@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
         stage("SNYK-OSS-Test"){
             steps{
 		        echo 'Snyk OSS Scanning...'
