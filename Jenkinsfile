@@ -12,21 +12,19 @@ pipeline {
 		            additionalArguments: '--all-sub-projects -d',
 		            failOnIssues: 'false'
 		        )
-		    }
-        }
-    }
-    stages {
-        stage("SNYK-CODE-SCAN"){
-            steps{
-		        echo 'Snyk Code Scanning...'
-		        snykSecurity(
-		            snykInstallation: 'SnykV2PluginTest',
-		            snykTokenId: 'SnykTkn',
-		            severity: 'high',
-		            additionalArguments: '--code',
-		            failOnIssues: 'false'
-		        )
-		    }
-        }
-    }
+		        }
+         }
+       stage("SNYK-CODE-SCAN"){
+           steps{
+           echo 'Snyk Code Scanning...'
+           snykSecurity(
+               snykInstallation: 'SnykV2PluginTest',
+               snykTokenId: 'SnykTkn',
+               severity: 'high',
+               additionalArguments: '--code',
+               failOnIssues: 'false'
+           )
+          }
+       }
+    }      
 }
