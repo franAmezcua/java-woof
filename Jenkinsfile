@@ -2,6 +2,19 @@ pipeline {
     agent any
 
     stages {
+
+    stage("SNYK-CODE-SCAN"){
+        steps{
+        echo 'Snyk Code Scanning...'
+        snykSecurity(
+            snykInstallation: 'SnykV2PluginTest',
+            snykTokenId: 'SnykTkn',
+            severity: 'high',
+            additionalArguments: '--code',
+            failOnIssues: 'false'
+        )
+       }
+    }
         stage("SNYK-OSS-Test"){
             steps{
 		        echo 'Snyk OSS Scanning...'
@@ -14,17 +27,5 @@ pipeline {
 		        )
 		        }
          }
-       stage("SNYK-CODE-SCAN"){
-           steps{
-           echo 'Snyk Code Scanning...'
-           snykSecurity(
-               snykInstallation: 'SnykV2PluginTest',
-               snykTokenId: 'SnykTkn',
-               severity: 'high',
-               additionalArguments: '--code',
-               failOnIssues: 'false'
-           )
-          }
-       }
     }      
 }
