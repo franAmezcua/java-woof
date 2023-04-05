@@ -14,5 +14,19 @@ pipeline {
 		        )
 		    }
         }
+    },
+    stages {
+        stage("SNYK-CODE-SCAN"){
+            steps{
+		        echo 'Snyk Code Scanning...'
+		        snykSecurity(
+		            snykInstallation: 'SnykV2PluginTest',
+		            snykTokenId: 'SnykTkn',
+		            severity: 'high',
+		            additionalArguments: '--code',
+		            failOnIssues: 'false'
+		        )
+		    }
+        }
     }
 }
